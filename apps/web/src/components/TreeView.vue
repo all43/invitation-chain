@@ -24,10 +24,12 @@ const LEVEL_HEIGHT = 100;
 const NODE_SPACING = 60;
 
 function renderTree() {
-  if (!svgRef.value || !containerRef.value || props.tree.length === 0) return;
+  if (!svgRef.value || !containerRef.value) return;
 
   const svg = d3Selection.select(svgRef.value);
   svg.selectAll('*').remove();
+
+  if (props.tree.length === 0) return;
 
   const width = containerRef.value.clientWidth;
   const height = containerRef.value.clientHeight;
