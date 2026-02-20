@@ -69,7 +69,7 @@ refreshTree();
       <h1>Invitation Chain</h1>
       <div class="header-actions">
         <button class="btn btn-primary" @click="handleSeed">Seed Demo Data</button>
-        <button class="btn btn-danger" @click="handleReset">Reset</button>
+        <button class="btn btn-danger" @click="handleReset">Clear Database</button>
       </div>
     </header>
 
