@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w @invitation-chain/server\" \"npm run dev -w @invitation-chain/web\"",
+    "build": "npm run build -w @invitation-chain/lib && npm run build -w @invitation-chain/server && npm run build -w @invitation-chain/web",
+    "test": "npm run test -w @invitation-chain/lib"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.0"
+  }
+}
