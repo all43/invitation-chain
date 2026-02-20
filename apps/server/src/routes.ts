@@ -96,6 +96,14 @@ export function createRouter(chain: InvitationChain): Router {
     }
   });
 
+  router.post('/api/users/:id/unban-descendants', (req, res) => {
+    try {
+      res.json(chain.unbanWithDescendants(req.params.id));
+    } catch (e: any) {
+      res.status(404).json({ error: e.message });
+    }
+  });
+
   router.post('/api/users/:id/ban-after-date', (req, res) => {
     try {
       const { cutoffDate } = req.body;

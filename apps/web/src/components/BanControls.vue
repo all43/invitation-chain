@@ -51,6 +51,18 @@ async function banWithDescendants() {
   }
 }
 
+async function unbanWithDescendants() {
+  loading.value = true;
+  try {
+    await api.unbanDescendants(props.user.userId);
+    emit('action');
+  } catch (e: any) {
+    emit('error', e.message);
+  } finally {
+    loading.value = false;
+  }
+}
+
 async function banAfterDate() {
   if (!cutoffDate.value) return;
   loading.value = true;
@@ -95,6 +107,14 @@ async function banAfterDate() {
         @click="banWithDescendants"
       >
         Ban + All Descendants
+      </button>
+
+      <button
+        class="btn btn-success"
+        :disabled="loading"
+        @click="unbanWithDescendants"
+      >
+        Unban + All Descendants
       </button>
     </div>
 

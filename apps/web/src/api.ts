@@ -55,6 +55,9 @@ export const api = {
   banDescendants: (id: string) =>
     request<BanResult>(`/users/${encodeURIComponent(id)}/ban-descendants`, { method: 'POST' }),
 
+  unbanDescendants: (id: string) =>
+    request<BanResult>(`/users/${encodeURIComponent(id)}/unban-descendants`, { method: 'POST' }),
+
   banAfterDate: (id: string, cutoffDate: string) =>
     request<BanResult>(`/users/${encodeURIComponent(id)}/ban-after-date`, {
       method: 'POST',

@@ -74,4 +74,8 @@ export const BAN_USERS_BY_IDS = (count: number): string => `
 UPDATE users SET is_banned = 1, banned_at = ?
 WHERE user_id IN (${Array(count).fill('?').join(',')})`;
 
+export const UNBAN_USERS_BY_IDS = (count: number): string => `
+UPDATE users SET is_banned = 0, banned_at = NULL
+WHERE user_id IN (${Array(count).fill('?').join(',')})`;
+
 export const DROP_TABLE = `DROP TABLE IF EXISTS users`;

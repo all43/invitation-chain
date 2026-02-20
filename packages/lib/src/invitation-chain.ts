@@ -10,6 +10,7 @@ import {
   BAN_USER,
   UNBAN_USER,
   BAN_USERS_BY_IDS,
+  UNBAN_USERS_BY_IDS,
   DROP_TABLE,
 } from './queries.js';
 import type { User, TreeNode, InvitationInput, BanResult } from './types.js';
@@ -137,6 +138,27 @@ export class InvitationChain {
       stmt.run(now, ...userIds);
     });
     banMany(ids);
+
+    return { bannedCount: ids.length, bannedUserIds: ids };
+  }
+
+  unbanWithDescendants(userId: string): BanResult {
+    const descendants = this.getDescendants(userId);
+    if (descendants.length === 0) {
+      throw new Error(`User "${userId}" does not exist`);
+    }
+
+    const ids = descendants.filter((u) => u.isBanned).map((u) => u.userId);
+
+    if (ids.length === 0) {
+      return { bannedCount: 0, bannedUserIds: [] };
+    }
+
+    const unbanMany = this.db.transaction((userIds: string[]) => {
+      const stmt = this.db.prepare(UNBAN_USERS_BY_IDS(userIds.length));
+      stmt.run(...userIds);
+    });
+    unbanMany(ids);
 
     return { bannedCount: ids.length, bannedUserIds: ids };
   }
