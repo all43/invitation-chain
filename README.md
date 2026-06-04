@@ -7,6 +7,20 @@ A full-stack web app for visualizing and moderating hierarchical user invitation
 ![Tech Stack](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 
+## Screenshots
+
+![Invitation tree with demo data loaded](docs/screenshots/main-view.png)
+
+*Full invitation tree — zoomable and pannable, with active users shown in green.*
+
+![Node selected showing user details and ban controls](docs/screenshots/node-detail.png)
+
+*Click any node to inspect user details, ancestry chain, and ban controls.*
+
+![Subtree banned with red nodes](docs/screenshots/ban-view.png)
+
+*After banning a user and all their descendants — banned nodes turn red.*
+
 ## What it does
 
 Track who invited whom. Each user in the system was either a root entry or was invited by someone else, forming a tree. You can:
